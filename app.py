@@ -1,6 +1,6 @@
 import os
 import subprocess
-import hashlib
+import bcrypt
 from datetime import datetime
 import json
 import logging
@@ -202,8 +202,11 @@ class BankAccount:
             total += digit
         return total % 10 == 0
 
-    def _hash_password(self, password):
-        return hashlib.sha256(password.encode()).hexdigest()
+    def _hash_password(self, password: str) -> str:
+        return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+
+    def _verify_password(self, password: str) -> bool:
+        return bcrypt.checkpw(password.encode(), self.password_hash.encode())
 
     def authenticate(self, password):
         if self.locked:
@@ -211,7 +214,7 @@ class BankAccount:
             print("Account locked due to too many failed attempts.")
             return False
 
-        if self._hash_password(password) == self.password_hash:
+        if self._verify_password(password):
             self.failed_attempts = 0
             self.save()
             logger.info(f"LOGIN_OK - {self.account_number} - Contraseña correcta")
