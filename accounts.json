@@ -1,0 +1,27 @@
+{
+  "account_number": "4111111111111111",
+  "balance": 50.0,
+  "password_hash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "failed_attempts": 0,
+  "locked": false,
+  "transactions": [
+    {
+      "type": "Withdrawal",
+      "amount": 900.0,
+      "balance_after": 100.0,
+      "timestamp": "2026-06-06T17:01:08.938639"
+    },
+    {
+      "type": "Deposit",
+      "amount": 1000.0,
+      "balance_after": 1100.0,
+      "timestamp": "2026-06-06T17:34:48.368320"
+    },
+    {
+      "type": "Withdrawal",
+      "amount": 1050.0,
+      "balance_after": 50.0,
+      "timestamp": "2026-06-06T17:35:07.216350"
+    }
+  ]
+}
